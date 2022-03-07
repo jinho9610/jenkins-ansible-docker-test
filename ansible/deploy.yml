@@ -16,15 +16,15 @@
     - name: run console api server on docker container
       shell: docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest
 
-  - name: run console api server on docker container
-    docker_container:
-      name: node-express
-      image: jinho9610/node-express-app:latest
-      state: started
-      recreate: true
-      restart_policy: always
-      user: root
-      ports: 5555:5555
+    - name: run console api server on docker container
+      docker_container:
+        name: node-express
+        image: jinho9610/node-express-app:latest
+        state: started
+        recreate: true
+        restart_policy: always
+        user: root
+        ports: 5555:5555
 
 # - hosts: apiserver
 #   serial: 1
