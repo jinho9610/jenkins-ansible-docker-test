@@ -1,4 +1,7 @@
 ---
+- name: test
+  ping:
+
 - name: set register if jinho9610/node-express-app:latest exists
   shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)
   register: imageExists
