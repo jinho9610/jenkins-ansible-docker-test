@@ -1,5 +1,14 @@
+# ---
+# - hosts: apiserver
+#   serial: 1
+#   roles:
+#    - deploy-apiserver
+
 ---
-- hosts: apiserver
-  serial: 1
-  roles:
-   - deploy-apiserver
+- name: ping test
+  hosts: apiserver
+  gather_facts: false
+  tasks:
+    - name: ping
+      ping:
+  
