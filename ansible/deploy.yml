@@ -3,8 +3,18 @@
   hosts: apiserver
   gather_facts: false
   tasks:
-    - name: echo making test
-      shell: echo 1123 > /root/ttttmp.txt
+    - name: test
+      shell: echo 123 > /root/ttmp.txt
+
+    - name: set register if jinho9610/node-express-app:latest exists
+      shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)
+      register: imageExists
+
+    - name: remove images
+      shell: docker rmi $(docker images --format {{ '{{.Repository}}:{{.Tag}}' }} | grep jinho9610/node-express-app)
+
+    - name: run console api server on docker container
+      shell: docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest
 # - hosts: apiserver
 #   serial: 1
 #   roles:
