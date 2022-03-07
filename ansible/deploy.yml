@@ -1,19 +1,33 @@
 ---
-- name: ping test
+- name: run console api server on docker container
   hosts: apiserver
   gather_facts: false
   tasks:
-    - name: test
-      shell: echo 123 > /root/ttmp.txt
+    - name: set register if container exists
+      shell: echo $(docker ps | grep node-express | wc -l)
+      register: apiExists
 
-    - name: set register if jinho9610/node-express-app:latest exists
+    - name: stop node-express container
+      docker_container:
+        name: node-express
+        state: stopped
+      when: apiExists.stdout != "0"
+
+    - name: remove node-express container
+      docker_container:
+        name: node-express
+        state: absent
+      when: needsRemoved.stdout != "0"
+
+    - name: set register if image exists
       shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)
       register: imageExists
 
-    # - name: remove images
-    #   shell: docker rmi $(docker images --format {{ '{{.Repository}}:{{.Tag}}' }} | grep jinho9610/node-express-app)
+    - name: remove images
+      shell: docker rmi $(docker images --format {{ '{{.Repository}}:{{.Tag}}' }} | grep jinho9610/node-express-app)
+      when: imageExists.stdout != "0"
 
-    - name: run console api server on docker container
+    - name: docker image run
       shell: docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest
 
     # - name: run console api server on docker container
