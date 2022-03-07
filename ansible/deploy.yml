@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: ping
-      shell: echo 1cd
+      shell: echo 1 > /root/tmp.txt
   
 
   # ---
