@@ -1,0 +1,5 @@
+---
+- hosts: apiserver
+  serial: 1
+  roles:
+   - deploy-apiserver

@@ -1,0 +1,4 @@
+ansible ansible_connection=local
+
+[apiserver]
+49.50.166.202 ansible_hosts=49.50.166.202
