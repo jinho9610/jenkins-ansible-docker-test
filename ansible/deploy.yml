@@ -1,12 +1,11 @@
 ---
-- hosts: apiserver
-  serial: 1
-  roles:
-   - deploy-apiserver
-
-# - name: ping test
-#   hosts: apiserver
-#   gather_facts: false
-#   tasks:
-#     - name: ping
-#       shell: echo 1 > /root/tmp.txt
+- name: ping test
+  hosts: apiserver
+  gather_facts: false
+  tasks:
+    - name: echo making test
+      shell: echo 1123 > /root/ttttmp.txt
+# - hosts: apiserver
+#   serial: 1
+#   roles:
+#    - deploy-apiserver
