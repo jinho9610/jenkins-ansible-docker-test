@@ -13,7 +13,7 @@
 
     - name: remove node-express container
       shell: docker rm node-express
-      when: needsRemoved.stdout != "0"
+      when: apiExists.stdout != "0"
 
     - name: set register if image exists
       shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)
