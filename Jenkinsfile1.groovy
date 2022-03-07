@@ -42,18 +42,18 @@ pipeline {
         stage('deploy api server') {
             steps {
                 echo 'jinho-kim-before'
-                // dir('ansible') {
-                //     ansiblePlaybook(
-                //         playbook: 'deploy.yml',
-                //         inventory: 'environments/hosts',
-                //         colorized: true,
-                //         disableHostKeyChecking: true,
-                //         extraVars: [
-                //             mode: 'deploy',
-                //             docker_imag_tag: 'jinho9610/node-express-app:latest'
-                //         ]
-                //     )
-                // }
+                dir('ansible') {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'environments/hosts',
+                        colorized: true,
+                        disableHostKeyChecking: true,
+                        extraVars: [
+                            mode: 'deploy',
+                            docker_imag_tag: 'jinho9610/node-express-app:latest'
+                        ]
+                    )
+                }
                 echo 'jinho-kim-after'
             }
         }
