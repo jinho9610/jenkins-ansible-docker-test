@@ -10,11 +10,11 @@
       shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)
       register: imageExists
 
-    - name: remove images
-      shell: docker rmi $(docker images --format {{ '{{.Repository}}:{{.Tag}}' }} | grep jinho9610/node-express-app)
+    # - name: remove images
+    #   shell: docker rmi $(docker images --format {{ '{{.Repository}}:{{.Tag}}' }} | grep jinho9610/node-express-app)
 
-    - name: run console api server on docker container
-      shell: docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest
+    # - name: run console api server on docker container
+    #   shell: docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest
 
     - name: run console api server on docker container
       docker_container:
