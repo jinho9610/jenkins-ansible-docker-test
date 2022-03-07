@@ -1,9 +1,3 @@
-# ---
-# - hosts: apiserver
-#   serial: 1
-#   roles:
-#    - deploy-apiserver
-
 ---
 - name: ping test
   hosts: apiserver
@@ -12,3 +6,9 @@
     - name: ping
       ping:
   
+
+  # ---
+# - hosts: apiserver
+#   serial: 1
+#   roles:
+#    - deploy-apiserver
