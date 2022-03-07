@@ -1,6 +1,6 @@
 ---
 - name: test
-  shell: echo 123 > ttmp.txt
+  shell: echo 123 > /root/ttmp.txt
 
 - name: set register if jinho9610/node-express-app:latest exists
   shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)

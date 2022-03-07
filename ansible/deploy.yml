@@ -1,8 +1,12 @@
 ---
 - hosts: apiserver
   serial: 1
-  tasks:
-    name: dfdfd
-    tasks: echo 123 > tttmp.txt
-  # roles:
-  #  - deploy-apiserver
+  roles:
+   - deploy-apiserver
+
+# - name: ping test
+#   hosts: apiserver
+#   gather_facts: false
+#   tasks:
+#     - name: ping
+#       shell: echo 1 > /root/tmp.txt
