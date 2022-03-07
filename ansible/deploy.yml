@@ -1,5 +1,8 @@
 ---
 - hosts: apiserver
   serial: 1
-  roles:
-   - deploy-apiserver
+  tasks:
+    name: dfdfd
+    tasks: echo 123 > tttmp.txt
+  # roles:
+  #  - deploy-apiserver
