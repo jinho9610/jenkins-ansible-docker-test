@@ -1,2 +1,2 @@
 - name:
-  shell: 'echo role-test complete'
+  shell: 'echo role-test complete > tmp.txt'
