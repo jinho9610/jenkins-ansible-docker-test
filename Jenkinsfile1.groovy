@@ -44,7 +44,7 @@ pipeline {
                 echo 'jinho-kim-before'
                 dir('ansible') {
                     ansiblePlaybook(
-                        playbook: 'deploy.yml',
+                        playbook: 'deploy-role-test.yml',
                         inventory: 'environments/hosts',
                         colorized: true,
                         disableHostKeyChecking: true,

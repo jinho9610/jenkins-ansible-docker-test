@@ -1,0 +1,5 @@
+---
+- hosts: apiserver
+  serial: 1
+  roles:
+   - role-test # ./roles/role-test/main.yml을 task에 추가
