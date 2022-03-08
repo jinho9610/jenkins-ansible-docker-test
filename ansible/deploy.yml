@@ -1,30 +1,35 @@
 ---
-- name: run console api server on docker container
-  hosts: apiserver
-  gather_facts: false
-  tasks:
-    - name: set register if container exists
-      shell: echo $(docker ps | grep node-express | wc -l)
-      register: apiExists
+- hosts: apiserver
+  serial: 1
+  roles:
+   - deploy-apiserver
 
-    - name: stop node-express container
-      shell: docker stop node-express
-      when: apiExists.stdout != "0"
+# - name: run console api server on docker container
+#   hosts: apiserver
+#   gather_facts: false
+#   tasks:
+#     - name: set register if container exists
+#       shell: echo $(docker ps | grep node-express | wc -l)
+#       register: apiExists
 
-    - name: remove node-express container
-      shell: docker rm node-express
-      when: apiExists.stdout != "0"
+#     - name: stop node-express container
+#       shell: docker stop node-express
+#       when: apiExists.stdout != "0"
 
-    - name: set register if image exists
-      shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)
-      register: imageExists
+#     - name: remove node-express container
+#       shell: docker rm node-express
+#       when: apiExists.stdout != "0"
 
-    - name: remove images
-      shell: docker rmi $(docker images --format {{ '{{.Repository}}:{{.Tag}}' }} | grep jinho9610/node-express-app)
-      when: imageExists.stdout != "0"
+#     - name: set register if image exists
+#       shell: echo $(docker images | grep jinho9610/node-express-app | wc -l)
+#       register: imageExists
 
-    - name: docker image run
-      shell: docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest
+#     - name: remove images
+#       shell: docker rmi $(docker images --format {{ '{{.Repository}}:{{.Tag}}' }} | grep jinho9610/node-express-app)
+#       when: imageExists.stdout != "0"
+
+#     - name: docker image run
+#       shell: docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest
 
     # - name: run console api server on docker container
     #   docker_container:
