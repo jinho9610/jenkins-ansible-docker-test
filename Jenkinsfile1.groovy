@@ -31,17 +31,9 @@ pipeline {
             }
         }
 
-        stage('docker run') {
-            steps {
-                sh script: "docker stop node-express"
-                sh script: "docker rm -f node-express"
-                sh script: "docker run --name node-express -d -p 5555:5555 jinho9610/node-express-app:latest"
-            }
-        }
-
         stage('deploy api server') {
             steps {
-                echo 'jinho-kim-before'
+                echo 'deploy-stage-before'
                 dir('ansible') {
                     ansiblePlaybook(
                         playbook: 'deploy.yml',
@@ -54,7 +46,7 @@ pipeline {
                         ]
                     )
                 }
-                echo 'jinho-kim-after'
+                echo 'deploy-stage-after'
             }
         }
     }
