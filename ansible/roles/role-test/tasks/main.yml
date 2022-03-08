@@ -1,2 +1,0 @@
-- name:
-  shell: 'echo role-test complete > tmp.txt'
